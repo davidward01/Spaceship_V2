@@ -1,0 +1,62 @@
+package aaa_practice_programs;
+
+import java.util.Scanner;
+
+public class RocketShipV2 {
+    public static void main(String[] args) {   // main method
+
+        Scanner input = new Scanner(System.in);
+
+        int fuelLevel = 0;  // fuel starts at zero.  If it goes below zero -> mission failed.
+        //int lightYears = fuelLevel * 500;
+        int marsDistance = 242_620_000;
+        int jupiterDistance = 373_440_000;
+        int venusDistance = 112_660_000;
+        int mercuryDistance = 120_830_000;
+        String currentPlanet = "";
+
+        System.out.println("Welcome to Earth Space Station!");
+        //System.out.println("");
+        System.out.println("Before you depart, how many lbs of fuel would you like to add?");
+        fuelLevel = input.nextInt();
+
+        if (fuelLevel >= 1_000_000) {
+            fuelLevel = 1_000_000;  // reassigns fuel level to 1 million if you add too much (max capacity).
+            System.out.println("Maximum fuel level reached.");
+        } else if (fuelLevel > 0 && fuelLevel < 1_000_000){
+            System.out.println("Your ship has been refueled.");
+        } else {
+            System.out.println("please enter a valid number of lbs of fuel, up to 1000000");
+        }
+        int rangeInMiles = fuelLevel * 500; // 1 lb of fuel gets you 500 miles
+
+        System.out.println("Fuel Level: " + fuelLevel + " lbs.");
+        System.out.println("Current maximum travel range: " + rangeInMiles + " miles.");
+        System.out.println("");
+        System.out.println("Where would you like to travel?");
+        System.out.println("Enter destination: \nMars: " + marsDistance + "mi.\nJupiter: " + jupiterDistance + "mi. \nVenus: " + venusDistance + "mi. \nMercury: " + mercuryDistance + "mi.");
+
+        input.nextLine();
+        String destinationFromEarth = input.nextLine();
+        if (destinationFromEarth.equalsIgnoreCase("Mars")){
+            System.out.println("Traveling to Mars. Trip distance: " + marsDistance + " miles.");
+            rangeInMiles -= marsDistance;
+        } else if (destinationFromEarth.equalsIgnoreCase("Jupiter")){
+            System.out.println("Traveling to Jupiter. Trip distance: " + jupiterDistance + " miles.");
+            rangeInMiles -= jupiterDistance;
+        } else if (destinationFromEarth.equalsIgnoreCase("Venus")){
+            System.out.println("Traveling to Venus. Trip distance: " + venusDistance + " miles.");
+            rangeInMiles -= venusDistance;
+        } else if (destinationFromEarth.equalsIgnoreCase("Mercury")){
+            System.out.println("Traveling to Mercury. Trip distance: " + mercuryDistance + " miles.");
+            rangeInMiles -= mercuryDistance;
+        } else {
+            System.out.println("Invalid destination entered. Please try again.");
+        }
+        destinationFromEarth = destinationFromEarth.substring(0, 1).toUpperCase() + destinationFromEarth.substring(1).toLowerCase();
+
+        System.out.println("You have arrived on " + destinationFromEarth +".");
+        System.out.println("Current maximum travel range: " + rangeInMiles + " miles.");
+
+    }
+}
